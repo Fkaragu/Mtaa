@@ -1,0 +1,28 @@
+{% extends 'master/base.html' %}
+
+{% block content %}
+
+<div class="container top">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2 class="font2">Search results for {{message}}</h2>
+        </div>
+    </div>
+
+    <div class="row">
+    {% if proj %}
+        {% for projj in proj %}
+            <div class="col-md-4 home-images search-results">
+                <img src="{{projj.photo.url}}" alt="image" width="320" height="350">
+            </div>
+            <div class="col-md-6">
+            <p>{{projj.proj_description}}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-md-12 text-center">
+            <h4 class="font1">No results for {{message}} </h4>
+        </div>
+    {% endif %}
+    </div>
+{% endblock %}
