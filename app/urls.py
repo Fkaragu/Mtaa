@@ -3,5 +3,6 @@ from . import views
 from django.conf import settings
 
 urlpatterns = [
-    url(r'^$',views.welcome)
+    url(r'^$',views.welcome),
+    url(r'^registrations/',views.register)
 ]
