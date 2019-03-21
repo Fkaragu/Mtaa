@@ -35,3 +35,14 @@ def editprofile(request):
     else:
         form = ProfileForm()
     return render(request,'profile/edit_profile.html',{'form':form})
+
+def search(request):
+    if 'search' in request.GET and request.GET['search']:
+        search_term = request.GET.get('search')
+        proj = Business.search_business(search_term)
+        message = f'{search_term}'
+
+        return render(request, 'search.html',{'message':message, 'proj':proj})
+    else:
+        message = 'Enter term to search'
+        return render(request, 'search.html', {'message':message})

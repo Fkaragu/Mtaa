@@ -38,3 +38,8 @@ class Business(models.Model):
 
     def save_business(self):
         self.save()
+
+    @classmethod
+    def search_business(cls, name):
+        pro = Business.objects.filter(name__icontains = name)
+        return pro
