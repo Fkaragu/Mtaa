@@ -19,3 +19,8 @@ def register(request):
         else:
             form = SignupForm()
             return render(request, 'Login/signup.html',{'form':form})
+
+def profile(request):
+    proj = Project.objects.filter(user=request.user)
+    prof = Profile.objects.filter(user=request.user)
+    return render(request, 'profile/profile.html',{'prof':prof ,'proj':proj})
