@@ -4,11 +4,12 @@ body{
     font: 400 15px/1.8 "Lato";
     font-style: sans-serif;
     color: #777;
+    
   }
 
 .bgimg-1{
     position: relative;
-    opacity: 0.8;
+    opacity: 3;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
