@@ -6,5 +6,6 @@ urlpatterns = [
     url(r'^$',views.welcome),
     url(r'^registrations/',views.register),
     url(r'^profile/',views.profile),
-    url(r'^user/(?P<username>\w+)', views.profile, name='profile')
+    url(r'^user/(?P<username>\w+)', views.profile, name='profile'),
+    url(r'^editprofile/',views.editprofile, name='editprofile')
 ]

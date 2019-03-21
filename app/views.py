@@ -21,6 +21,16 @@ def register(request):
             return render(request, 'Login/signup.html',{'form':form})
 
 def profile(request):
-    proj = Project.objects.filter(user=request.user)
     prof = Profile.objects.filter(user=request.user)
-    return render(request, 'profile/profile.html',{'prof':prof ,'proj':proj})
+    return render(request, 'profile/profile.html',{'prof':prof})
+
+def editprofile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            add=form.save(commit=False)
+            add.save()
+            return HttpResponse("Profile has been updated successfully")
+    else:
+        form = ProfileForm()
+    return render(request,'profile/edit_profile.html',{'form':form})
