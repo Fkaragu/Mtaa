@@ -28,6 +28,7 @@ class Neighbourhood(models.Model):
         self.save()
 
 class Business(models.Model):
+    photo = models.ImageField(upload_to='articles/', blank=True)
     name = models.TextField(max_length=30, blank=True)
     user = models.ForeignKey(User)
     neighbourhood = models.ForeignKey(Neighbourhood)

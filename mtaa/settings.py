@@ -62,7 +62,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mtaa.wsgi.application'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/post'
 
 
 # Database
