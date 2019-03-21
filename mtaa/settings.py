@@ -1,4 +1,5 @@
 import os
+from decouple import config,Csv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -10,11 +11,17 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+UPLOADCARE = {
+    'pub_key': config('pub_key'),
+    'secret': config('secret'),
+}
+
 INSTALLED_APPS = [
     'app',
     'bootstrap3',
     'bootstrap4',
     'tinymce',
+    'pyuploadcare',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
