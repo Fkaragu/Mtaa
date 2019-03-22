@@ -44,3 +44,14 @@ class Business(models.Model):
     def search_business(cls, name):
         pro = Business.objects.filter(name__icontains = name)
         return pro
+
+class Comment(models.Model):
+    user = models.ForeignKey(User)
+    comment = models.TextField(max_length=500)
+    post_date = models.DateTimeField(auto_now=True)
+
+    def __str_(self):
+        return self.comment
+
+    def save_comment(self):
+        self.save()
