@@ -7,7 +7,8 @@ def welcome(request):
     return render(request, 'master/index.html')
 
 def post(request):
-    return render(request, 'post.html')
+    comm = Comment.objects.all()
+    return render(request, 'post.html',locals())
 
 def register(request):
     if request.user.is_authenticated():

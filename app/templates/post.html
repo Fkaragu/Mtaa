@@ -3,7 +3,13 @@
 {% block content %}
 <div class="row">
   <div class="col-md-7">
-  <p>comment</p>
+  {% for comms in comm %}
+  <div class ="boor">
+  <p><bold>From: </bold>{{comms.user.username}}</p>
+  <p><bold>Comment: </bold> {{comms.comment}}</p>
+  <p><bold>Posted On: </bold> {{comms.post_date}}</p>
+  </div>
+  {% endfor %}
   </div>
   <div class="col-md-5">
   <p>form</p>
