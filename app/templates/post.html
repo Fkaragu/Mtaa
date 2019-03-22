@@ -1,18 +1,30 @@
 {% extends 'master/base.html' %}
+{% load bootstrap3 %}
 
 {% block content %}
 <div class="row">
   <div class="col-md-7">
-  {% for comms in comm %}
-  <div class ="boor">
-  <p><bold>From: </bold>{{comms.user.username}}</p>
-  <p><bold>Comment: </bold> {{comms.comment}}</p>
-  <p><bold>Posted On: </bold> {{comms.post_date}}</p>
-  </div>
-  {% endfor %}
+    {% for comms in comm %}
+    <br>
+    <div class="boor">
+      <p>
+        <bold>From: </bold>{{comms.user.username}}
+      </p>
+      <p>
+        <bold>Comment: </bold> {{comms.comment}}
+      </p>
+      <p>
+        <bold>Posted On: </bold> {{comms.post_date}}
+      </p>
+    </div>
+    {% endfor %}
   </div>
   <div class="col-md-5">
-  <p>form</p>
+    <form action="{% url 'post' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <input type="submit" class="btn btn-success btn-lg" value="POST">
+    </form>
   </div>
 </div>
 {% endblock %}

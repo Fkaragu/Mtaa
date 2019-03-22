@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .models import *
 from .form import *
@@ -8,7 +9,18 @@ def welcome(request):
 
 def post(request):
     comm = Comment.objects.all()
-    return render(request, 'post.html',locals())
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            add=form.save(commit=False)
+            add.user = request.user
+            add.save()
+
+            return redirect('post')
+    else:
+        form = CommentForm()
+    return render(request,'post.html',{'form':form,'comm':comm})
 
 def register(request):
     if request.user.is_authenticated():

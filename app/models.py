@@ -47,6 +47,7 @@ class Business(models.Model):
 
 class Comment(models.Model):
     user = models.ForeignKey(User)
+    photo = models.ImageField(upload_to='articles/', blank=True)
     comment = models.TextField(max_length=500)
     post_date = models.DateTimeField(auto_now=True)
 
