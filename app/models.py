@@ -12,7 +12,7 @@ class Neighbourhood(models.Model):
     def __str_(self):
         return self.name
 
-    def neighbourhood(self):
+    def save_neighb(self):
         self.save()
 
     @classmethod
@@ -21,7 +21,7 @@ class Neighbourhood(models.Model):
         db.session.commit()
 
     @classmethod
-    def delete_neigborhood(self):
+    def delete_neigborhood(cls,self):
         db.session.delete(self)
         db.session.commit()
 
