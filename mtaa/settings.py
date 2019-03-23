@@ -5,19 +5,32 @@ from decouple import config,Csv
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODE=config("MODE", default="dev")
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=True, cast=bool)
+if config('MODE')=="dev":
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.postgresql',
+           'NAME': config('DB_NAME'),
+           'USER': config('DB_USER'),
+           'PASSWORD': config('DB_PASSWORD'),
+           'HOST': config('DB_HOST'),
+           'PORT': '',
+       }
 
-SECRET_KEY = '6fmf71lqz@m%@ycl%klyt7+knci42uw586+xb-wn0%)lf&z*vy'
+   }
+# production
+else:
+   DATABASES = {
+       'default': dj_database_url.config(
+           default=config('DATABASE_URL')
+       )
+   }
 
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
-# Application definition
-
-UPLOADCARE = {
-    'pub_key': config('pub_key'),
-    'secret': config('secret'),
-}
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 INSTALLED_APPS = [
     'app',
@@ -43,6 +56,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'mtaa.urls'
 
 TEMPLATES = [
@@ -61,25 +75,26 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'mtaa.wsgi.application'
 LOGIN_REDIRECT_URL = '/post'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mtaa',
-        'USER': 'francs',
-    'PASSWORD':'master',
-    }
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'mtaa',
+#        'USER': 'francs',
+#    'PASSWORD':'master',
+#    }
+#}
+
+UPLOADCARE = {
+    'pub_key': config('pub_key'),
+    'secret': config('secret'),
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -96,16 +111,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.11/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
