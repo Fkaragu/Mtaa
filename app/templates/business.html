@@ -3,16 +3,32 @@
 
 {% block content %}
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-1">
   </div>
-  <div class="col-md-4">
+  <div class="col-md-5">
     <form action="{% url 'business' %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       {% bootstrap_form form %}
       <input type="submit" class="btn btn-success btn-lg" value="POST">
     </form>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-5">
+    {% for bizz in biz %}
+    <h4>
+      <center>Posted Business</center>
+    </h4>
+    <div class="row">
+      <div class="col-md-5">
+        <img src="{{bizz.photo.url}}" alt="busines" width="200" height="200" />
+      </div>
+      <div class ="col-md-5">
+      <p>{{bizz.name}}</p>
+      <p>Contact: {{bizz.email}}</p>
+      <p>Area: {{bizz.neighbourhood.name}}</p>
+      <p>Posted By: {{bizz.user}}</p>
+      </dvi>
+    </div>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}

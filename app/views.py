@@ -72,7 +72,8 @@ def business(request):
             return redirect('business')
     else:
         form = BusinessForm()
-    return render(request,'business.html',{'form':form})
+        biz = Business.objects.all()
+    return render(request,'business.html',{'form':form,'biz':biz})
 
 def search(request):
     if 'search' in request.GET and request.GET['search']:
