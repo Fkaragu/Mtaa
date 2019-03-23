@@ -18,7 +18,7 @@ class Neighbourhood(models.Model):
 class Profile(models.Model):
     Neigh_name = models.OneToOneField(Neighbourhood)
     user = models.OneToOneField(User)
-    profile_pic = models.ImageField(upload_to='articles/', blank=True)
+    profile_pic = models.ImageField(upload_to='articles/',default='articles/NoPic.png', blank=True)
     bio = models.TextField(max_length=500, blank=True)
     contact = models.TextField(max_length=500, blank=True)
 
@@ -29,7 +29,7 @@ class Profile(models.Model):
         self.save()
 
 class Business(models.Model):
-    photo = models.ImageField(upload_to='articles/', blank=True)
+    photo = models.ImageField(upload_to='articles/', default='articles/NoPic.png',blank=True)
     name = models.TextField(max_length=30, blank=True)
     user = models.ForeignKey(User)
     neighbourhood = models.ForeignKey(Neighbourhood)

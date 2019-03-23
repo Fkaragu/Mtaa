@@ -63,6 +63,17 @@ def neighbourhood(request):
         form = NeighbourhoodForm()
     return render(request,'neighbourhood.html',{'form':form})
 
+def business(request):
+    if request.method == 'POST':
+        form = BusinessForm(request.POST, request.FILES)
+        if form.is_valid():
+            add=form.save(commit=False)
+            add.save()
+            return redirect('business')
+    else:
+        form = BusinessForm()
+    return render(request,'business.html',{'form':form})
+
 def search(request):
     if 'search' in request.GET and request.GET['search']:
         search_term = request.GET.get('search')

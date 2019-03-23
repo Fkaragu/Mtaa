@@ -24,3 +24,8 @@ class NeighbourhoodForm(forms.ModelForm):
     class Meta:
         model = Neighbourhood
         fields = ('user','name','location','occupants')
+
+class BusinessForm(forms.ModelForm):
+    class Meta:
+        model = Business
+        fields = ('photo','name','email','user','neighbourhood')

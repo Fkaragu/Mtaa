@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^post/',views.post, name='post'),
     url(r'^registrations/',views.register),
     url(r'^search/',views.search, name='search'),
+    url(r'^business/',views.business, name='business'),
     url(r'^editprofile/',views.editprofile, name='editprofile'),
     url(r'^user/(?P<username>\w+)', views.profile, name='profile'),
     url(r'^neighbourhood/',views.neighbourhood, name='neighbourhood')
