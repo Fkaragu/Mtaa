@@ -45,11 +45,23 @@ def editprofile(request):
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             add=form.save(commit=False)
+            add.user = request.user
             add.save()
             return HttpResponse("Profile has been updated successfully")
     else:
         form = ProfileForm()
     return render(request,'profile/edit_profile.html',{'form':form})
+
+def neighbourhood(request):
+    if request.method == 'POST':
+        form = NeighbourhoodForm(request.POST, request.FILES)
+        if form.is_valid():
+            add=form.save(commit=False)
+            add.save()
+            return redirect('welcome')
+    else:
+        form = NeighbourhoodForm()
+    return render(request,'neighbourhood.html',{'form':form})
 
 def search(request):
     if 'search' in request.GET and request.GET['search']:

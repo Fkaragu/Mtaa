@@ -16,7 +16,7 @@ class Neighbourhood(models.Model):
         self.save()
 
 class Profile(models.Model):
-    Neigh_name = models.ForeignKey(Neighbourhood)
+    Neigh_name = models.OneToOneField(Neighbourhood)
     user = models.OneToOneField(User)
     profile_pic = models.ImageField(upload_to='articles/', blank=True)
     bio = models.TextField(max_length=500, blank=True)
