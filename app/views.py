@@ -47,7 +47,7 @@ def editprofile(request):
             add=form.save(commit=False)
             add.user = request.user
             add.save()
-            return HttpResponse("Profile has been updated successfully")
+            return redirect('editprofile')
     else:
         form = ProfileForm()
     return render(request,'profile/edit_profile.html',{'form':form})
@@ -58,7 +58,7 @@ def neighbourhood(request):
         if form.is_valid():
             add=form.save(commit=False)
             add.save()
-            return redirect('welcome')
+            return redirect('neighbourhood')
     else:
         form = NeighbourhoodForm()
     return render(request,'neighbourhood.html',{'form':form})

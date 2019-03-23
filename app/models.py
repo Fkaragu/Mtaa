@@ -7,7 +7,7 @@ class Neighbourhood(models.Model):
     name = models.TextField(max_length=30, blank=True)
     location = models.TextField(max_length=30, blank=True)
     occupants = models.TextField(max_length=30, blank=True)
-    user = models.OneToOneField(User)
+    user = models.ForeignKey(User)
 
     def __str_(self):
         return self.name
@@ -27,8 +27,6 @@ class Profile(models.Model):
 
     def save_profile(self):
         self.save()
-
-
 
 class Business(models.Model):
     photo = models.ImageField(upload_to='articles/', blank=True)
