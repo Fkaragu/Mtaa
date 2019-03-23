@@ -60,8 +60,9 @@ def neighbourhood(request):
             add.save()
             return redirect('neighbourhood')
     else:
+        nei = Neighbourhood.objects.all()
         form = NeighbourhoodForm()
-    return render(request,'neighbourhood.html',{'form':form})
+    return render(request,'neighbourhood.html',{'form':form,'nei':nei})
 
 def business(request):
     if request.method == 'POST':
