@@ -1,22 +1,23 @@
 {% extends 'master/base.html'%}
 {% block content %}
-
-<div class="row">
-  <div class="col-md-4">
-    {% for pic in prof %}
-    <img src="{{pic.profile_pic.url}}" alt="image" width="300" height="300">
-    {% endfor %}
-  </div>
-  <div class="col-md-4">
-    {% for pic in prof %}
-    <p><strong>Name: </strong>{{user.username}}</p>
-    <p><strong>Email: </strong>{{user.email}}</p>
-    <p><strong>Bio: </strong>{{pic.bio}}</p>
-    <p><strong>Contact: </strong>{{pic.contact}}</p>
-    <p><strong>Area: </strong>{{pic.Neigh_name.name}}</p>
-    <p><strong>Located at: </strong>{{pic.Neigh_name.location}}</p>
-    <p><strong>Updated by: </strong>{{pic.user}}</p>
-    {% endfor %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      {% for pic in prof %}
+      <img src="{{pic.profile_pic.url}}" alt="image" width="300" height="300">
+      {% endfor %}
+    </div>
+    <div class="col-md-4">
+      {% for pic in prof %}
+      <p><strong>Name: </strong>{{user.username}}</p>
+      <p><strong>Email: </strong>{{user.email}}</p>
+      <p><strong>Bio: </strong>{{pic.bio}}</p>
+      <p><strong>Contact: </strong>{{pic.contact}}</p>
+      <p><strong>Area: </strong>{{pic.NeighName.name}}</p>
+      <p><strong>Located at: </strong>{{pic.Neigh_name.location}}</p>
+      <p><strong>Updated by: </strong>{{pic.user}}</p>
+      {% endfor %}
+    </div>
   </div>
 </div>
 {% endblock%}

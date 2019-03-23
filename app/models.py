@@ -16,7 +16,7 @@ class Neighbourhood(models.Model):
         self.save()
 
 class Profile(models.Model):
-    Neigh_name = models.ForeignKey(Neighbourhood)
+    NeighName = models.ForeignKey(Neighbourhood)
     user = models.OneToOneField(User)
     profile_pic = models.ImageField(upload_to='articles/',default='articles/NoPic.png', blank=True)
     bio = models.TextField(max_length=500, blank=True)
@@ -50,7 +50,6 @@ class Comment(models.Model):
     user = models.ForeignKey(User)
     photo = models.ImageField(upload_to='articles/',default='articles/default.jpg',blank=True)
     comment = models.TextField(max_length=500)
-    neighbourhood = models.ForeignKey(Neighbourhood)
     post_date = models.DateTimeField(auto_now=True)
 
 

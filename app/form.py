@@ -13,7 +13,7 @@ class SignupForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('profile_pic','bio','Neigh_name','contact')
+        fields = ('profile_pic','bio','NeighName','contact')
 
 class CommentForm(forms.ModelForm):
     class Meta:

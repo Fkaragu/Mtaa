@@ -8,17 +8,13 @@ def welcome(request):
     return render(request, 'master/index.html')
 
 def post(request):
-
+    
     comm = Comment.objects.all()
     if request.method == 'POST':
         form = CommentForm(request.POST, request.FILES)
         if form.is_valid():
             add=form.save(commit=False)
             add.user = request.user
-
-            aa = Profile.objects.filter(user=request.user)
-            add.neighbourhood = aa.Neigh_name
-
             add.save()
             return redirect('post')
     else:
