@@ -16,7 +16,6 @@ def post(request):
             add=form.save(commit=False)
             add.user = request.user
             add.save()
-
             return redirect('post')
     else:
         form = CommentForm()

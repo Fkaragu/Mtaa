@@ -3,18 +3,6 @@ from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 from pyuploadcare.dj.models import ImageField
 
-class Profile(models.Model):
-    user = models.OneToOneField(User)
-    profile_pic = models.ImageField(upload_to='articles/', blank=True)
-    bio = models.TextField(max_length=500, blank=True)
-    contact = models.TextField(max_length=500, blank=True)
-
-    def __str_(self):
-        return self.contact
-
-    def save_profile(self):
-        self.save()
-
 class Neighbourhood(models.Model):
     name = models.TextField(max_length=30, blank=True)
     location = models.TextField(max_length=30, blank=True)
@@ -26,6 +14,21 @@ class Neighbourhood(models.Model):
 
     def neighbourhood(self):
         self.save()
+
+class Profile(models.Model):
+    Neigh_name = models.ForeignKey(Neighbourhood)
+    user = models.OneToOneField(User)
+    profile_pic = models.ImageField(upload_to='articles/', blank=True)
+    bio = models.TextField(max_length=500, blank=True)
+    contact = models.TextField(max_length=500, blank=True)
+
+    def __str_(self):
+        return self.contact
+
+    def save_profile(self):
+        self.save()
+
+
 
 class Business(models.Model):
     photo = models.ImageField(upload_to='articles/', blank=True)
@@ -47,7 +50,7 @@ class Business(models.Model):
 
 class Comment(models.Model):
     user = models.ForeignKey(User)
-    photo = models.ImageField(upload_to='articles/', blank=True)
+    photo = models.ImageField(upload_to='articles/',default='articles/default.jpg',blank=True)
     comment = models.TextField(max_length=500)
     post_date = models.DateTimeField(auto_now=True)
 
