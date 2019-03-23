@@ -50,7 +50,9 @@ class Comment(models.Model):
     user = models.ForeignKey(User)
     photo = models.ImageField(upload_to='articles/',default='articles/default.jpg',blank=True)
     comment = models.TextField(max_length=500)
+    neighbourhood = models.ForeignKey(Neighbourhood)
     post_date = models.DateTimeField(auto_now=True)
+
 
     def __str_(self):
         return self.comment
