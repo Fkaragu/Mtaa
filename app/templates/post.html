@@ -11,10 +11,17 @@
         <p>
           <bold>From: </bold>{{comms.user.username}}
         </p>
-        <img src="{{comms.photo.url}}" alt="" width="300" height="300" />
-        <p>
-          <bold>Post: </bold> {{comms.comment}}
-        </p>
+        <div>
+          <!-- modal button -->
+          <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal{{comms.id}}">
+            <img src="{{comms.photo.url}}" class="img-responsive" alt="Image" width="300" height="300">
+            <br>
+            <p>
+              <bold>Post: </bold> {{comms.comment}}
+            </p>
+          </button>
+          <hr>
+        </div>
         <p>
           <bold>Posted On: </bold> {{comms.post_date}}
         </p>
@@ -30,4 +37,33 @@
     </div>
   </div>
 </div>
+
+{% for comms in comm %}
+<div class="modal" id="myModal{{comms.id}}" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <center><img src="{{comms.photo.url}}" alt="" width="400" height="400"></center>
+        <br>
+        <p class="modal-title fnt">{{comms.comment}}</p>
+        <br>
+        <center>
+          <p class="modal-title fnt">{{ comms.pub_date }}</p>
+        </center>
+      </div>
+
+      <div class="modal-footer">
+        <input class="form-control" type="text" value="https://thashmtaa.herokuapp.com/{{comms.photo.url}}" id="{{comms.id}}-url">
+        <button type="button" value="https://thashmtaa.herokuapp.com//{{comms.photo.url}}" onclick="copyLink()" class="btn btn-outline-secondary my-2 my-sm-0 link-btn">Copy Photo Link</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+
+
+
 {% endblock %}

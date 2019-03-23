@@ -15,6 +15,31 @@ class Neighbourhood(models.Model):
     def neighbourhood(self):
         self.save()
 
+    @classmethod
+    def create_neigborhood(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def delete_neigborhood(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    @classmethod
+    def update_neighborhood(self):
+        db.session.update(self)
+        db.session.commit()
+
+    @classmethod
+    def update_occupants(self):
+        db.session.update(self)
+        db.session.commit()
+
+    @classmethod
+    def find_neigborhood(cls,neigborhood_id):
+        pro = Neighbourhood.objects.filter(id = neigborhood_id)
+        return pro
+
 class Profile(models.Model):
     NeighName = models.ForeignKey(Neighbourhood)
     user = models.OneToOneField(User)
@@ -40,6 +65,26 @@ class Business(models.Model):
 
     def save_business(self):
         self.save()
+
+    @classmethod
+    def create_business(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def delete_business(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    @classmethod
+    def update_business(self):
+        db.session.update(self)
+        db.session.commit()
+
+    @classmethod
+    def find_business(cls,business_id):
+        pro = Business.objects.filter(id = business_id)
+        return pro
 
     @classmethod
     def search_business(cls, name):
