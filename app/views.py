@@ -7,8 +7,11 @@ from .form import *
 def welcome(request):
     return render(request, 'master/index.html')
 
+def contact(request):
+    return render(request, 'contacts.html')
+
 def post(request):
-    
+
     comm = Comment.objects.all()
     if request.method == 'POST':
         form = CommentForm(request.POST, request.FILES)
